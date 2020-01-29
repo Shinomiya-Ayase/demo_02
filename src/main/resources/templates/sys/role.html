@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app">
+    <th:block th:replace="commons/navbar::navbar(a='系统管理',b='权限管理')"/>
+    <div class="ui divider"></div>
+    <table class="ui form table celled center aligned">
+        <thead>
+            <tr>
+                <th><div class="ui checkbox"><input type="checkbox"></div></th>
+                <th>角色编号</th>
+                <th>角色名称</th>
+                <th>权限</th>
+                <th>修改</th>
+            </tr>
+        </thead>
+        <tr v-for="p in pm">
+            <td><div class="ui checkbox"><input type="checkbox"></div></td>
+            <td>{{p.role_id}}</td>
+            <td>{{p.roleName}}</td>
+            <td>
+                <div class="field">
+                    <textarea readonly cols="5" rows="3">{{p.roles}}</textarea>
+                </div>
+            </td>
+            <td>
+                <a @click="edit(p)" href="javascript:;" class="ui button purple">修改</a>
+            </td>
+        </tr>
+    </table>
+    <div class="ui modal">
+        <div class="header">系统管理:编辑角色</div>
+        <div class="content">
+            <div class="ui attached message info">
+                <div class="header">角色信息</div>
+            </div>
+            <form class="ui form fluid attached segment" method="post">
+                <div class="fields inline">
+                    <label class="field two wide">角色编号</label>
+                    <div class="field four wide">
+                        <input readonly name="roleId" v-model="p.role_id">
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">角色名称</label>
+                    <div class="field four wide">
+                        <input name="roleName" v-model="p.roleName">
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">权限</label>
+                    <div class="field ten wide">
+                        <select name="permissionId" class="ui dropdown" multiple="">
+                            <option :value="p.permissionId" v-for="p in ps">{{p.permissionname}}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="ui segment attached">
+                <a href="#" class="ui button blue">保存</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/role.js"></script>
+</body>
+</html>

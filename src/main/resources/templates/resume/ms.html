@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app">
+    <th:block th:replace="commons/navbar::navbar(a='简历管理',b='面试记录列表')"/>
+    <div class="ui divider"></div>
+    <table class="ui table celled center aligned">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>面试时间</th>
+            <th>逻辑思维</th>
+            <th>沟通协作</th>
+            <th>笔试成绩</th>
+            <th>形象</th>
+            <th>已有新工作</th>
+            <th>是否离职</th>
+            <th>面试评价</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button @click="del" class="ui button red animated fade">
+                    <div class="visible content">删除</div>
+                    <div class="hidden content">
+                        <i class="icon trash"></i>
+                    </div>
+                </button>
+            </td>
+        </tr>
+    </table>
+    <div class="ui divider"></div>
+    <a href="/to/resume/showYy" class="ui button teal">添加</a>
+    <div class="ui menu pagination floated right">
+        <a href="#" class="item">&LeftArrow;</a>
+        <a href="#" class="item" v-for="i in 3">{{i}}</a>
+        <a href="#" class="item">&rightarrow;</a>
+    </div>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{},
+        methods:{
+            del(){
+
+            }
+        },
+        created(){
+
+        },mounted(){
+            $(".ui.checkbox").checkbox();
+        }
+    })
+</script>
+</body>
+</html>

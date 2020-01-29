@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app">
+    <th:block th:replace="commons/navbar::navbar(a='渠道管理',b='渠道列表')"/>
+    <div class="ui divider"></div>
+    <table class="ui table celled center aligned">
+        <thead>
+        <tr>
+            <th>
+                <div class="ui checkbox"><input type="checkbox"></div>
+            </th>
+            <th>渠道名称</th>
+            <th>联系人</th>
+            <th>职务</th>
+            <th>联系电话</th>
+            <th>进展情况</th>
+            <th>合同编号</th>
+            <th>负责人</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>
+                <div class="ui checkbox"><input type="checkbox"></div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="ui divider"></div>
+    <button @click="add" class="ui button blue animated fade">
+        <div class="visible content">添加</div>
+        <div class="hidden content">
+            <i class="icon plus"></i>
+        </div>
+    </button>
+    <button @click="del" class="ui button red animated fade">
+        <div class="visible content">删除</div>
+        <div class="hidden content">
+            <i class="icon remove"></i>
+        </div>
+    </button>
+    <div class="ui modal" style="top: -10px">
+        <div class="content">
+            <form method="post" class="ui form">
+                <table class="ui table very compact celled center aligned">
+                    <thead>
+                    <tr>
+                        <th><button class="ui button blue icon">
+                            <i class="icon save"></i>保存
+                        </button></th>
+                        <th colspan="3">渠道信息</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>渠道编号</td><td></td>
+                        <td>渠道名称</td>
+                        <td>
+                            <div class="field"><input name="channelName"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>网址</td>
+                        <td>
+                            <div class="field">
+                                <div class="ui labeled input">
+                                    <div class="ui label black">http://</div>
+                                    <input name="website" placeholder="qq.com">
+                                </div>
+                            </div>
+                        </td>
+                        <td>渠道类型</td>
+                        <td>
+                            <div class="field">
+                                <select name="channelType">
+                                    <option :value="c.channelId" v-for="c in channel">{{c.channelTypename}}</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>负责人</td>
+                        <td>
+                            <select name="principalId">
+                                <option value="1">jack</option>
+                            </select>
+                        </td>
+                        <td>合同编号</td>
+                        <td><div class="field"><input name="contractId"></div></td>
+                    </tr>
+                    <tr>
+                        <td>进展情况</td>
+                        <td colspan="3">
+                            <div class="ui pink progress" data-percent="40" id="progress">
+                                <div class="bar"></div><div class="label">40%</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">联系人</td>
+                    </tr>
+                    <tr>
+                        <td>联系人姓名</td>
+                        <td><div class="field"><input name="linkmanone"></div></td>
+                        <td>职务</td>
+                        <td><div class="field"><input name="dutyone"></div></td>
+                    </tr>
+                    <tr>
+                        <td>办公电话</td>
+                        <td><div class="field"><input name="officephoneone"></div></td>
+                        <td>移动电话</td>
+                        <td><div class="field"><input name="mobilephoneone"></div></td>
+                    </tr>
+                    <tr>
+                        <td>住宅电话</td>
+                        <td><div class="field"><input name="homephoneone"></div></td>
+                        <td>E-mail</td>
+                        <td><div class="field"><input name="emailone"></div></td>
+                    </tr>
+                    <tr>
+                        <td>MSN</td>
+                        <td><div class="field"><input name="msn"></div></td>
+                        <td>QQ</td>
+                        <td><div class="field"><input name="qq"></div></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/js/channel.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app">
+    <th:block th:replace="commons/navbar::navbar(a='简历管理',b='预约记录')"/>
+    <div class="ui divider"></div>
+    <table class="ui table celled center aligned">
+        <thead>
+        <tr>
+            <th>
+                <div class="ui checkbox"><input type="checkbox"></div>
+            </th>
+            <th>简历编号</th>
+            <th>姓名</th>
+            <th>联系电话</th>
+            <th>预约记录</th>
+            <th>面试时间</th>
+            <th>笔试试题</th>
+            <th>面试评价</th>
+            <th>面试负责人</th>
+            <th>预约人</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>
+                <div class="ui checkbox"><input type="checkbox"></div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="ui divider"></div>
+    <button @click="add" class="ui button teal animated fade">
+        <div class="visible content">添加</div>
+        <div class="hidden content">
+            <i class="icon pencil"></i>
+        </div>
+    </button>
+    <button @click="del" class="ui button red animated fade">
+        <div class="visible content">删除</div>
+        <div class="hidden content">
+            <i class="icon trash"></i>
+        </div>
+    </button>
+    <div class="ui menu pagination floated right">
+        <a href="#" class="item">&LeftArrow;</a>
+        <a href="#" class="item" v-for="i in 3">{{i}}</a>
+        <a href="#" class="item">&rightarrow;</a>
+    </div>
+    <div class="ui modal" style="top: 0">
+        <div class="content">
+            <div class="ui message attached warning"><div class="header">简历管理:未预约人列表</div></div>
+            <table class="ui attached table celled center aligned">
+                <thead>
+                    <tr>
+                        <th>简历编号</th><th>姓名</th><th>性别</th><th>出生年月</th><th>毕业时间</th>
+                        <th>专业</th><th>学历</th><th>技能</th><th>语言类型</th><th>语言水平</th><th>预约</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button class="ui button icon blue">
+                            <i class="icon time"></i>预约
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{},
+        methods:{
+            add(){
+                $(".ui.modal").modal('setting',{
+                    duration:800,
+                    inverted:true,
+                    transition:'fade up',
+                    blurring:true
+                }).modal('show');
+            },del(){
+
+            }
+        },
+        created(){
+
+        },mounted(){
+            $(".ui.checkbox").checkbox();
+        }
+    })
+</script>
+</body>
+</html>

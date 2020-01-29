@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app">
+    <th:block th:replace="commons/navbar::navbar(a='简历管理',b='简历中心')"/>
+    <div class="ui divider"></div>
+    <table class="ui table celled center aligned">
+        <thead>
+        <tr>
+            <th>
+                <div class="ui checkbox"><input type="checkbox"></div>
+            </th>
+            <th>简历编号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>投递方式</th>
+            <th>毕业院校</th>
+            <th>毕业时间</th>
+            <th>语言</th>
+            <th>语言水平</th>
+            <th>行业背景</th>
+            <th>部门</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>
+                <div class="ui checkbox"><input type="checkbox"></div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="ui divider"></div>
+    <button class="ui button red animated fade">
+        <div class="visible content">删除</div>
+        <div class="hidden content">
+            <i class="icon trash"></i>
+        </div>
+    </button>
+    <button @click="show" class="ui button teal animated fade">
+        <div class="visible content">录入简历</div>
+        <div class="hidden content">
+            <i class="icon pencil"></i>
+        </div>
+    </button>
+    <div class="ui menu pagination floated right">
+        <a href="#" class="item">&LeftArrow;</a>
+        <a href="" class="item">1</a><a href="" class="item">2</a><a href="" class="item">3</a><a href=""
+                                                                                                  class="item">4</a><a
+            href="" class="item">5</a>
+        <a href="#" class="item">&rightarrow;</a>
+    </div>
+    <div class="ui modal" style="top: -10px">
+        <div class="content">
+            <form method="post" class="ui form">
+                <table class="ui table very compact celled center aligned">
+                    <thead>
+                    <tr>
+                        <th><button class="ui button blue icon">
+                            <i class="icon save"></i>保存
+                        </button></th>
+                        <th colspan="3">
+                            基本个人信息 (<i class="icon red certificate"></i>为必填项)
+                        </th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>姓名<i class="icon red certificate"></i></td>
+                        <td>
+                            <div class="field"><input name="resumeName"></div>
+                        </td>
+                        <td>其他联系方式</td>
+                        <td>
+                            <div class="field"><input name="resumePhone"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>移动电话</td>
+                        <td>
+                            <div class="field"><input name="resumeTel"></div>
+                        </td>
+                        <td>出生年月</td>
+                        <td>
+                            <div class="field"><input type="date" name="resumeBir"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>性别</td>
+                        <td>
+                            <div class="field inline">
+                                <div class="ui toggle checkbox">
+                                    <input type="checkbox" class="hidden" name="resumeGender" :value="gender" @change="get($event.target)">
+                                    <label>{{gender}}</label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>语言水平</td>
+                        <td>
+                            <div class="field">
+                                <select name="resumeLangId">
+                                    <option :value="t.dictId" v-for="t in dict" v-if="t.dictType=='语言水平'">{{t.dictItem}}</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>语言类型</td>
+                        <td>
+                            <div class="field">
+                                <select name="resumeLanTypeId">
+                                    <option :value="t.dictId" v-for="t in dict" v-if="t.dictType=='语言类型'">{{t.dictItem}}</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>毕业时间</td>
+                        <td>
+                            <div class="field"><input type="date" name="educationTime"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>学历</td>
+                        <td>
+                            <div class="field">
+                                <select name="educationId">
+                                    <option :value="t.dictId" v-for="t in dict" v-if="t.dictType=='学历'">{{t.dictItem}}</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>简历来源</td>
+                        <td>
+                            <div class="fields inline" style="margin-bottom: 0;">
+                                <div class="field">
+                                    <select name="resumeResourceId">
+                                        <option value="1">请选择渠道来源</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <select name="resumeChannelId">
+                                        <option value="1">请选择渠道</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>应聘岗位</td>
+                        <td>
+                            <div class="field">
+                                <select name="positionId">
+                                    <option :value="t.dictId" v-for="t in dict" v-if="t.dictType=='应聘岗位'">{{t.dictItem}}</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>投递方式</td>
+                        <td>
+                            <div class="field">
+                                <select name="postId">
+                                    <option :value="t.dictId" v-for="t in dict" v-if="t.dictType=='投递方式'">{{t.dictItem}}</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>投递时间</td>
+                        <td>
+                            <div class="field"><input type="date" name="postTime"></div>
+                        </td>
+                        <td>收到时间</td>
+                        <td>
+                            <div class="field"><input type="date" name="arriveTime"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>毕业院校</td>
+                        <td>
+                            <div class="field"><input name="resumeCollege"></div>
+                        </td>
+                        <td>专业</td>
+                        <td>
+                            <div class="field"><input name="resumeMajor"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>行业背景</td>
+                        <td>
+                            <div class="field"><input name="background"></div>
+                        </td>
+                        <td>技能</td>
+                        <td>
+                            <div class="field"><input name="skills"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>户口所在地</td>
+                        <td>
+                            <div class="field"><input name="hukoulocation"></div>
+                        </td>
+                        <td>工作年限</td>
+                        <td>
+                            <div class="field"><input type="number" name="worktime"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>文本简历</td>
+                        <td colspan="3">
+                            <div class="field">
+                                <textarea name="txtResume"></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/js/resume.js"></script>
+</body>
+</html>

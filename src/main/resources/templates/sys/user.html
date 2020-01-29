@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app">
+    <th:block th:replace="commons/navbar::navbar(a='系统管理',b='用户管理')"/>
+    <div class="ui divider"></div>
+    <table class="ui table celled center aligned">
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>角色</th>
+            <th>权限</th>
+            <th>修改</th>
+        </tr>
+        </thead>
+        <tr v-for="u in users.list">
+            <td width="15%">{{u.username}}</td>
+            <td width="15%">{{u.roleName}}</td>
+            <td width="35%" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-width:200px">{{u.pname}}</td>
+            <td width="15%">
+                <button @click="update(u)" class="ui button yellow icon">
+                    <i class="icon edit"></i>修改
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1" style="text-align:left;">
+                <div class="ui buttons fluid">
+                    <button @click="delUser" class="ui button red">删除</button>
+                    <button @click="addUser" class="ui button teal">添加</button>
+                </div>
+            </td>
+            <td colspan="3" style="text-align:right;">
+                <div class="ui pagination menu">
+                    <a v-if="users.pageNum==1" href="javascript:;" class="item disabled">&LeftArrow;</a>
+                    <a @click="page(users.prePage)" v-if="users.pageNum!=1" href="javascript:;" class="item">&LeftArrow;</a>
+                    <a @click="page(i)" href="javascript:;" v-for="i in users.pages" class="item"
+                       :class="{active:i==users.pageNum}">{{i}}</a>
+                    <a v-if="users.pageNum==users.pages" href="javascript:;" class="item disabled">&rightarrow;</a>
+                    <a @click="page(users.nextPage)" v-if="users.pageNum!=users.pages" href="javascript:;" class="item">&rightarrow;</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="ui modal update">
+        <div class="header">系统管理:修改用户</div>
+        <div class="content">
+            <div class="ui attached message info">
+                <div class="header">用户信息</div>
+            </div>
+            <form class="ui form fluid attached segment" method="post">
+                <input type="hidden" :value="user.user_id">
+                <div class="fields inline">
+                    <label class="field two wide">用户名</label>
+                    <div class="field four wide">
+                        <input name="username" v-model="user.username">
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">用户密码</label>
+                    <div class="field four wide">
+                        <input :disabled="user.user_id!=uid" name="userPwd" type="password" v-model="user.user_pwd">
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">确认密码</label>
+                    <div class="field four wide">
+                        <input :disabled="user.user_id!=uid" name="pwd2" type="password">
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">角色</label>
+                    <div class="field four wide">
+                        <select v-model="defR" name="userRoleId">
+                            <option :value="r.roleId" v-for="r in roles">{{r.rolename}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">所属部门</label>
+                    <div class="field four wide">
+                        <select v-model="defD" name="departmentId">
+                            <option :value="d.departmentId" v-for="d in deps">{{d.departmentName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">所属项目</label>
+                    <div class="field four wide">
+                        <select name="projectId">
+                            <option value="ibm">IBM</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="ui segment attached">
+                <a href="#" class="ui button blue">保存</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui modal add">
+        <div class="header">系统管理:添加用户</div>
+        <div class="content">
+            <div class="ui attached message info">
+                <div class="header">用户信息</div>
+            </div>
+            <form class="ui form fluid attached segment" method="post">
+                <div class="fields inline">
+                    <label class="field two wide">用户名</label>
+                    <div class="field four wide">
+                        <input name="username">
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">用户密码</label>
+                    <div class="field four wide">
+                        <input name="userPwd" type="password">
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">确认密码</label>
+                    <div class="field four wide">
+                        <input name="pwd2" type="password">
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">角色</label>
+                    <div class="field four wide">
+                        <select name="userRoleId">
+                            <option :value="r.roleId" v-for="r in roles">{{r.rolename}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">所属部门</label>
+                    <div class="field four wide">
+                        <select name="departmentId">
+                            <option :value="d.departmentId" v-for="d in deps">{{d.departmentName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">所属项目</label>
+                    <div class="field four wide">
+                        <select name="projectId">
+                            <option value="ibm">IBM</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="ui segment attached">
+                <a href="#" class="ui button blue">保存</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/user.js"></script>
+<script th:inline="javascript">
+    let uid = [[${session.user.userId}]];
+    vue.uid = uid;
+</script>
+</body>
+</html>

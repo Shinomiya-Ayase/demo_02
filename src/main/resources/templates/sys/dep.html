@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app">
+    <th:block th:replace="commons/navbar::navbar(a='系统管理',b='部门管理')"/>
+    <div class="ui divider"></div>
+    <table class="ui table celled center aligned">
+        <thead>
+        <tr>
+            <th><div class="ui checkbox"><input type="checkbox"></div></th>
+            <th>部门名称</th>
+            <th>部门描述</th>
+            <th>负责人</th>
+            <th>修改</th>
+        </tr>
+        </thead>
+        <tr v-for="d in deps">
+            <td><div class="ui checkbox"><input type="checkbox"></div></td>
+            <td>{{d.departmentName}}</td>
+            <td>{{d.departmentDesc}}</td>
+            <td>{{d.dutyUser}}</td>
+            <td>
+                <button @click="edit(d)" class="ui button brown icon">
+                    <i class="icon edit"></i>修改
+                </button>
+            </td>
+        </tr>
+    </table>
+    <div class="ui divider"></div>
+    <button @click="del" class="ui button red animated fade">
+        <div class="visible content">删除</div>
+        <div class="hidden content">
+            <i class="icon remove"></i>
+        </div>
+    </button>
+    <button @click="edit(null)" class="ui button blue animated fade">
+        <div class="visible content">添加</div>
+        <div class="hidden content">
+            <i class="icon plus"></i>
+        </div>
+    </button>
+    <div class="ui modal">
+        <div class="header">系统管理:{{JSON.stringify(d)=='{}'?'添加':'修改'}}部门</div>
+        <div class="content">
+            <div class="ui message attached warning">
+                <div class="header">部门信息</div>
+            </div>
+            <form class="ui form attached segment fluid">
+                <input type="hidden" name="departmentId" :value="d.departmentId">
+                <div class="fields inline">
+                    <label class="field two wide">部门名称</label>
+                    <div class="field six wide">
+                        <input name="departmentName" :value="d.departmentName">
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">负责人</label>
+                    <div class="field six wide">
+                        <input name="dutyUser" :value="d.dutyUser">
+                    </div>
+                </div>
+                <div class="fields inline">
+                    <label class="field two wide">部门描述</label>
+                    <div class="field six wide">
+                        <input name="departmentDesc" :value="d.departmentDesc">
+                    </div>
+                </div>
+            </form>
+            <div class="ui segment attached">
+                <a href="#" class="ui button blue">保存</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{deps:[],d:{}},
+        methods:{
+            init(){
+                $.get('/showDeps',data=>this.deps=data)
+            },edit(d){
+                this.d = d==null?{}:d;
+                $('.ui.modal').modal('setting',{
+                    duration:800,
+                    inverted:true,
+                    transition:'fade up',
+                    blurring:true
+                }).modal('show');
+            },del(){
+
+            }
+        },created(){
+            this.init();
+        },mounted(){
+            setTimeout(()=>{
+                $(".ui.checkbox").checkbox();
+            },100)
+        }
+    });
+</script>
+</body>
+</html>

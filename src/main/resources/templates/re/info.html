@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app">
+  <th:block th:replace="commons/navbar::navbar(a='需求管理',b='需求列表')"/>
+  <table class="ui table center aligned celled">
+    <thead>
+    <tr>
+      <th>部门名称</th>
+      <th>部门经理</th>
+      <th>客户公司</th>
+      <th>需求名称</th>
+      <th>合适简历</th>
+      <th>已发送简历</th>
+      <th>已参加面试</th>
+      <th>已通过面试</th>
+      <th>到岗需求人数</th>
+      <th>需求起止时间</th>
+      <th>删除</th>
+    </tr>
+    </thead>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <a href="#" class="ui button red animated fade">
+          <div class="visible content">删除</div>
+          <div class="hidden content">
+            <i class="icon trash"></i>
+          </div>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button @click="showAdd" class="ui button teal">添加</button>
+      </td>
+      <td colspan="10"></td>
+    </tr>
+  </table>
+  <div class="ui modal add" style="top: -10px">
+    <div class="header">需求管理:添加需求>>需求信息(<i class="icon red certificate"></i>为必填项)</div>
+    <div class="content">
+      <form class="ui form">
+        <table class="ui table center aligned">
+          <tr>
+            <td>需求名称<i class="icon red certificate"></i></td>
+            <td><div class="field"><input name="requirementName"></div></td>
+            <td>部门名称</td>
+            <td><div class="field">
+              <select name="departmentId">
+                <option :value="d.departmentId" v-for="d in list.department">{{d.departmentName}}</option>
+              </select>
+            </div></td>
+          </tr>
+          <tr>
+            <td>项目名称</td>
+            <td><div class="field">
+              <select name="projectId">
+                <option value="">IBM项目</option>
+              </select>
+            </div></td>
+            <td>需求人数</td>
+            <td><div class="field"><input name="rePopulation"></div></td>
+          </tr>
+          <tr>
+            <td>客户公司</td>
+            <td><div class="field">
+              <select name="custCompanyId">
+                <option :value="c.custNo" v-for="c in list.company">{{c.custCompany}}</option>
+              </select>
+            </div></td>
+            <td>客户经理</td>
+            <td><div class="field">
+              <select name="custmangerId">
+                <option :value="c.userId" v-for="c in list.user">{{c.username}}</option>
+              </select>
+            </div></td>
+          </tr>
+          <tr>
+            <td>联系电话</td>
+            <td colspan="3"><div class="field"><input name="rePhone"></div></td>
+          </tr>
+          <tr>
+            <td>需求起始时间</td>
+            <td><div class="field"><input type="date" name="reStartTime"></div></td>
+            <td>需求结束时间</td>
+            <td><div class="field"><input type="date" name="reEndTime"></div></td>
+          </tr>
+          <tr>
+            <td>需求描述</td>
+            <td colspan="3">
+              <div class="field">
+                <textarea name="reDesc" cols="30" rows="4"></textarea>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>备注</td>
+            <td colspan="3">
+              <div class="field">
+                <textarea name="reRemark" cols="30" rows="4"></textarea>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button type="button" @click="save" class="ui button blue">保存</button>
+            </td>
+            <tr colspan="3"></tr>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      list:{}
+    },
+    methods:{
+      init(){
+        $.get('/bindSelect',data=>this.list=data)
+      },
+      showAdd(){
+        $(".add").modal('setting',{
+          duration:800,
+          inverted:true,
+          transition:'fade up',
+          //blurring:true
+        }).modal('show');
+      },save(){
+
+      }
+    },
+    created(){
+      this.init();
+    }
+  })
+</script>
+</html>
