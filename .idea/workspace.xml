@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f87da1a2-98fb-4fae-a630-a2aa4fcb9a1f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/java/entity/Bargain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/java/entity/Bargain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/Semantic-UI/semantic.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/Semantic-UI/semantic.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/Semantic-UI/semantic.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/Semantic-UI/semantic.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/Semantic-UI/semantic.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/Semantic-UI/semantic.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/commons/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/commons/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sys/role.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sys/role.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sys/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sys/user.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="E:\java\mvn-repository" />
+        <option name="mavenHome" value="E:/java/apache-maven-3.5.4" />
+        <option name="userSettingsFile" value="E:\java\apache-maven-3.5.4\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="1.8" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1XxkpE7bt11TrfADRBgVCACuxHg" />
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
+  </component>
+  <component name="RunManager">
+    <configuration name="HrApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="demo_02" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.java.HrApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\侯峰\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f87da1a2-98fb-4fae-a630-a2aa4fcb9a1f" name="Default Changelist" comment="" />
+      <created>1581995313446</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581995313446</updated>
+      <workItem from="1581995314775" duration="697000" />
+      <workItem from="1582880263560" duration="1421000" />
+      <workItem from="1584012768350" duration="1107000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584013125827">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584013125827" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1584013056826">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584013056826" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1584013056825">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584013056825" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1584013056825">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584013056825" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1584013056826">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584013056826" />
+    <state width="1877" height="281" key="GridCell.Tab.1.bottom" timestamp="1584013030888">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584013030888" />
+    <state width="1877" height="281" key="GridCell.Tab.1.center" timestamp="1584013030888">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584013030888" />
+    <state width="1877" height="281" key="GridCell.Tab.1.left" timestamp="1584013030888">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584013030888" />
+    <state width="1877" height="281" key="GridCell.Tab.1.right" timestamp="1584013030888">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584013030888" />
+  </component>
+</project>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app">
+    <th:block th:replace="commons/navbar::navbar(a='渠道管理',b='渠道类型')"/>
+    <div class="ui divider"></div>
+    <table class="ui table celled center aligned">
+        <thead>
+            <tr>
+                <th><div class="ui checkbox"><input type="checkbox" id="allCheck"></div></th>
+                <th>渠道类型</th>
+            </tr>
+        </thead>
+        <tr v-for="c in channel">
+            <td><div class="ui checkbox"><input type="checkbox" name="channelId" :value="c.channelId"></div></td>
+            <td>{{c.channelTypename}}</td>
+        </tr>
+    </table>
+    <div class="ui form">
+        <div class="inline fields">
+            <div class="field">
+                <button @click="delChannelType" class="ui button red icon"><i class="icon trash"></i>删除</button>
+                <a href="javascript:history.back()" class="ui button yellow icon"><i class="icon redo"></i>返回</a>
+            </div>
+            <div class="field">
+                <label>新渠道</label>
+                <input name="channelTypename">
+                <button @click="addChannelType" type="button" class="ui button blue icon">
+                    <i class="icon plus"></i>添加
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/channel.js"></script>
+</body>
+</html>

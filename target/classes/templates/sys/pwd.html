@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app" class="m20">
+    <th:block th:replace="commons/navbar::navbar(a='系统管理',b='修改密码')"/>
+    <div class="ui divider"></div>
+    <div class="ui attached message info">
+        <div class="header">用户信息</div>
+    </div>
+    <form class="ui form fluid attached segment" method="post">
+        <div class="fields inline">
+            <label class="field two wide">用户名</label>
+            <div class="field four wide">
+                <input name="username" v-model="user.username">
+            </div>
+        </div>
+        <div class="fields inline">
+            <label class="field two wide">用户密码</label>
+            <div class="field four wide">
+                <input name="userPwd" type="password" v-model="user.userPwd">
+            </div>
+        </div>
+        <div class="fields inline">
+            <label class="field two wide">确认密码</label>
+            <div class="field four wide">
+                <input name="pwd2" type="password">
+            </div>
+        </div>
+        <div class="fields inline">
+            <label class="field two wide">角色</label>
+            <div class="field four wide">
+                <select disabled name="userRoleId" v-model="user.userRoleId">
+                    <option :value="r.roleId" v-for="r in roles">{{r.rolename}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="fields inline">
+            <label class="field two wide">所属部门</label>
+            <div class="field four wide">
+                <select disabled name="departmentId" v-model="user.departmentId">
+                    <option :value="d.departmentId" v-for="d in deps">{{d.departmentName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="fields inline">
+            <label class="field two wide">所属项目</label>
+            <div class="field four wide">
+                <select disabled name="projectId">
+                    <option value="ibm">IBM</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="ui segment attached">
+        <a href="#" class="ui button blue">保存</a>
+    </div>
+</div>
+<script th:inline="javascript">
+    new Vue({
+        el:'#app',
+        data:{user:[[${session.user}]],roles:[],deps:[],defR:1,defD:1},
+        methods:{
+            init(){
+                $.get('/showRoles',data=>this.roles=data);
+                $.get('/showDeps',data=>this.deps=data);
+            }
+        },created(){
+            this.init();
+        }
+    });
+</script>
+</body>
+</html>

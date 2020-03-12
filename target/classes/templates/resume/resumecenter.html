@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app" class="h-100">
+    <div class="ui segment inverted attached">
+        <div class="ui container inverted menu secondary">
+            <div class="ui item header blue inverted"><i class="icon github"></i>Software迅达</div>
+            <a class="item right">
+                <i class="icon user large inverted"></i><span th:text="${session.user?.username}"></span>
+            </a>
+            <a class="item"><i class="icon save large yellow"></i>收藏本页</a>
+            <a class="item"><i class="icon wrench large teal"></i>系统设置</a>
+            <a href="/to/index" class="item"><i class="icon power off large"></i>退出系统</a>
+        </div>
+    </div>
+    <div class="ui segment inverted attached">
+        <div class="ui menu inverted">
+            <div @mouseenter="hover" class="ui dropdown item" v-for="m in menus">
+                <i :class="m.key.css"></i>{{m.key.name}}
+                <div class="menu">
+                    <a :href="v.menuUrl" target="right" class="item" v-for="v in m.value"><i :class="v.css"></i>{{v.name}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui grid attached h-100">
+        <div class="two wide column p-lr0">
+            <div class="ui menu inverted vertical fluid t-center h-100 pointing" id="menu" v-if="i==0" v-for="(m,i) in menus">
+                <a :href="v.menuUrl" target="right" class="item" v-for="v in m.value"><i :class="v.css"></i>{{v.name}}</a>
+            </div>
+        </div>
+        <div class="fourteen wide column p-lr0">
+            <iframe scrolling="no" src="" name="right" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+</div>
+<script src="/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app">
+    <th:block th:replace="commons/navbar::navbar(a='简历管理',b='已预约人列表')"/>
+    <div class="ui divider"></div>
+    <table class="ui table celled center aligned">
+        <thead>
+        <tr>
+            <th>面试时间</th><th>简历编号</th><th>姓名</th>
+            <th>已面试次数</th><th>面试试题</th><th>面试人</th><th>面试</th>
+        </tr>
+        </thead>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button @click="ms" class="ui button icon blue">
+                    <i class="icon user secret"></i>面试
+                </button>
+                <button class="ui button icon red">
+                    <i class="icon remove"></i>删除
+                </button>
+            </td>
+        </tr>
+    </table>
+    <a href="#" class="ui button red">删除</a>
+    <a href="javascript:history.back()" class="ui button blue">返回</a>
+    <div class="ui modal" style="top: -10px;">
+        <div class="content" style="padding: 0.5rem;">
+            <form class="ui form" method="post">
+                <table class="ui table celled center aligned very compact">
+                    <thead>
+                    <tr>
+                        <th><a href="#" class="ui button teal icon"><i class="icon print"></i>保存</a></th>
+                        <th colspan="3">
+                            简历管理:添加面试信息&gt;面试信息(<i class="icon red certificate"></i>为必填项)
+                        </th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>简历编号</td><td></td>
+                        <td>姓名</td><td></td>
+                    </tr>
+                    <tr>
+                        <td>已有新工作</td>
+                        <td>
+                            <div class="field">
+                                <select>
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>是否离职</td>
+                        <td>
+                            <div class="field">
+                                <select>
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>工作经验</td><td><div class="field"><input></div></td>
+                        <td>形象</td><td><div class="field"><input></div></td>
+                    </tr>
+                    <tr>
+                        <td>逻辑思维</td><td><div class="field"><input></div></td>
+                        <td>沟通协作</td><td><div class="field"><input></div></td>
+                    </tr>
+                    <tr>
+                        <td>笔试成绩</td><td><div class="field"><input></div></td>
+                        <td>面试日期</td><td><div class="field"><input></div></td>
+                    </tr>
+                    <tr>
+                        <td>原单位收入</td><td><div class="field"><input></div></td>
+                        <td>面试人</td><td><div class="field"><select>
+                        <option value="">jack</option></select></div></td>
+                    </tr>
+                    <tr>
+                        <td>期望薪水</td><td><div class="field"><input></div></td>
+                        <td>谈判薪水</td><td><div class="field"><input></div></td>
+                    </tr>
+                    <tr><td>预计到岗时间</td><td colspan="3"></td></tr>
+                    <tr>
+                        <td>综合评价</td>
+                        <td colspan="3">
+                            <div class="field">
+                                <textarea cols="30" rows="3"></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>简历状态</td>
+                        <td colspan="3">
+                            <div class="fields inline">
+                                <div class="two wide field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="example2" checked="checked">
+                                        <label>提交给</label>
+                                    </div>
+                                </div>
+                                <div class="five wide field">
+                                    <select>
+                                        <option value="">请选择一个项目名称</option>
+                                    </select>
+                                </div>
+                                <div class="five wide field">
+                                    <select>
+                                        <option value="">请选择一个岗位名称</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="fields inline">
+                                <div class="two wide field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="example2" checked="checked">
+                                        <label>提交给</label>
+                                    </div>
+                                </div>
+                                <div class="five wide field">
+                                    <select>
+                                        <option value="">请选择一个客户公司名称</option>
+                                    </select>
+                                </div>
+                                <div class="five wide field">
+                                    <select>
+                                        <option value="">请选择一个岗位名称</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="fields inline">
+                                <div class="two field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="example2" checked="checked">
+                                        <label>储备</label>
+                                    </div>
+                                </div>
+                                <div class="two field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="example2" checked="checked">
+                                        <label>释放</label>
+                                    </div>
+                                </div>
+                                <div class="two wide field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="example2" checked="checked">
+                                        <label>推荐到</label>
+                                    </div>
+                                </div>
+                                <div class="three wide field">
+                                    <select>
+                                        <option value="">招聘部</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>备注</td>
+                        <td colspan="3">
+                            <div class="field">
+                                <textarea cols="30" rows="3"></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{},
+        methods:{
+            ms(){
+                $(".ui.modal").modal('setting',{
+                    duration:800,
+                    inverted:true,
+                    transition:'fade up',
+                    blurring:true
+                }).modal('show');
+            }
+        },
+        created(){
+
+        }
+    })
+</script>
+</html>

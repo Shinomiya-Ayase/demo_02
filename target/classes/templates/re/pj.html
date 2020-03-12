@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="commons/header::header"/>
+<body>
+<div id="app">
+  <th:block th:replace="commons/navbar::navbar(a='项目管理',b='项目管理列表')"/>
+  <table class="ui table celled center aligned">
+    <thead>
+    <tr>
+      <th>项目名称</th>
+      <th>项目经理</th>
+      <th>项目助理</th>
+      <th>所属部门</th>
+      <th>联系电话</th>
+      <th>联系人</th>
+      <th>详细描述</th>
+      <th>项目起止时间</th>
+      <th>删除</th>
+    </tr>
+    </thead>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <button class="ui button red">删除</button>
+      </td>
+    </tr>
+    <tr>
+      <td><button @click="showAdd" class="ui button teal">添加</button></td>
+      <td colspan="8"></td>
+    </tr>
+  </table>
+  <div class="ui modal add" style="top: -10px">
+    <div class="header">项目管理:添加项目>>项目信息</div>
+    <div class="content">
+      <form class="ui form">
+        <div class="fields inline">
+          <label class="two wide field">部门名称</label>
+          <div class="six wide field">
+            <select name="departmentId">
+              <option :value="d.departmentId" v-for="d in list.department">{{d.departmentName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="fields inline">
+          <label class="two wide field">项目名称</label>
+          <div class="six wide field">
+            <input name="projectName">
+          </div>
+        </div>
+        <div class="fields inline">
+          <label class="two wide field">项目经理</label>
+          <div class="six wide field">
+            <select name="projectmanageId">
+              <option :value="d.userId" v-if="d.userRoleId==5" v-for="d in list.user">{{d.username}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="fields inline">
+          <label class="two wide field">项目助理</label>
+          <div class="six wide field">
+            <select name="projectHelperId">
+              <option :value="d.userId" v-if="d.userRoleId==4" v-for="d in list.user">{{d.username}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="fields inline">
+          <label class="two wide field">联系电话</label>
+          <div class="six wide field">
+            <input name="phone">
+          </div>
+        </div>
+        <div class="fields inline">
+          <label class="two wide field">联系人</label>
+          <div class="six wide field">
+            <input name="linkman">
+          </div>
+        </div>
+        <div class="fields inline">
+          <label class="two wide field">项目开始时间</label>
+          <div class="six wide field">
+            <input type="date" name="projectStartTime">
+          </div>
+        </div>
+        <div class="fields inline">
+          <label class="two wide field">项目截止时间</label>
+          <div class="six wide field">
+            <input type="date" name="projectEndTime">
+          </div>
+        </div>
+        <div class="fields inline">
+          <label class="two wide field">项目描述</label>
+          <div class="six wide field">
+            <input name="projectdesc">
+          </div>
+        </div>
+        <div class="field">
+          <button class="ui button yellow">保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  new Vue({
+    el:'#app',
+    data:{
+      list:{}
+    },
+    methods:{
+      init(){
+        $.get('/bindSelect',data=>this.list=data)
+      },
+      showAdd(){
+        $(".add").modal('setting',{
+          duration:800,
+          inverted:true,
+          transition:'fade up',
+        }).modal('show');
+      }
+    },
+    created(){
+      this.init();
+    }
+  })
+</script>
+</html>
